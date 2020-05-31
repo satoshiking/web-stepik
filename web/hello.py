@@ -1,15 +1,5 @@
 def app(environ, start_response):
-    data = b''
-    
-    args = ''
-    queryList = environ['QUERY_STRING'].split('&')
-    for arg in queryList:
-        args += arg  
-        args += '\n'
-
-    args_bytes = bytes(args)
-    data = data + args_bytes
-
+    data = "\n".join(environ.get('QUERY_STRING').split("&")).encode('utf-8')
 
     status = '200 OK'
     response_headers = [
