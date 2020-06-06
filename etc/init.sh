@@ -16,11 +16,10 @@ sudo ln -s /usr/bin/python3.5 /usr/bin/python3
 
 
 cd /home/box
-virtualenv -p python3 venv
-source venv/bin/activate
-pip install --upgrade pip
-pip install django==2.1
-pip install gunicorn
-cd /home/box/web/ask
-gunicorn -D --bind=0.0.0.0:8000 --workers=2 --timeout=15 --log-level=debug ask.wsgi:application
+sudo virtualenv -p python3 venv
+sudo source venv/bin/activate
+sudo /home/box/venv/bin/python -m pip install --upgrade pip
+sudo /home/box/venv/bin/python -m pip install django==2.1 gunicorn
 
+cd /home/box/web/ask
+gunicorn -D -b 0.0.0.0:8000 --workers=2 --timeout=15 --log-level=debug ask.wsgi:application
